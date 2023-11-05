@@ -5,9 +5,6 @@
   -ms-text-size-adjust: 100%;
 }
 
-div.tabulator-header-filter {
-  background-color: black!important;
-}
 div.tabulator-header-filter>input {
   background-color: white!important;
 }
@@ -25,8 +22,8 @@ div.tabulator-header-filter>input {
 #dropArea {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: 3%;
+  width: 94%;
   height: 100%;
   padding: 100px 0 0;
   border: 2px dashed #494949;
