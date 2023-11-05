@@ -55,7 +55,7 @@ function readFile(file) {
     const content = event.target?.result;
     try {
       const jsonData = JSON.parse(content);
-      const notes = jsonData.map((v,i) => ({ no: i, id: v.id, text: v.text, date: dayjs(v.createdAt).format('YYYY-MM-DD HH:mm:ss') }))
+      const notes = jsonData.map((v,i) => ({ no: i, id: v.id, text: v.text, date: dayjs(v.createdAt).format('YYYY/MM/DD HH:mm') }))
       setData(notes);
       alter();
     } catch (error) {
@@ -74,8 +74,7 @@ function setData(notes) {
   let table = new Tabulator('#target', {
     data: notes,
     tooltips: true,
-    layout:"fitDataFill",
-    // responsiveLayout:true,
+    layout:"fitDataTable",
     pagination: "local",
     paginationSize: 50,
     columns:[
