@@ -70,6 +70,15 @@ function alter() {
   document.getElementById('target').classList.remove('hide');
 }
 
+function link(cell, formatterParams){
+  let cd = cell.getData();
+  let domain = document.getElementById('domain').value;
+  if (!domain) {
+    domain = "misskey.gamelore.fun";
+  }
+  return "https://" + domain +"/notes/" + cd.id;
+}
+
 function setData(notes) {
   let table = new Tabulator('#target', {
     data: notes,
@@ -77,11 +86,15 @@ function setData(notes) {
     layout:"fitDataTable",
     pagination: "local",
     paginationSize: 50,
+    paginationSizeSelector: [ 10 , 25 , 50 , 100 ],
     columns:[
       {title:"No.", field:"no", headerFilter:true},
-      {title:"ID", field:"id"},
-      {title:"本文", field:"text", tooltip:true, headerFilter:true, headerSort:false},
-      {title:"日付", field:"date", tooltip:true, headerFilter:true, headerSort:false},
+      {title:"本文", field:"text", tooltip:true, headerFilter:true, headerSort:false, maxWidth:800},
+      {title:"日付", field:"date", tooltip:true, headerFilter:true, headerSort:false, formatter:"link", formatterParams:{
+        url:link,
+        labelField:"date",
+        target:"_blank",
+      }},
     ],
   });
 }
