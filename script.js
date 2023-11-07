@@ -101,7 +101,7 @@ function setData(notes) {
 
 
 const apiUrl = "https://misskey.gamelore.fun/storage/files/6cff3461-2293-4f83-959f-f89d1e32aba5";
-fetch(apiUrl)
+fetch(apiUrl, {mode: 'cors'})
 .then(response => response.text())
 .then(value => {
   console.log(value);

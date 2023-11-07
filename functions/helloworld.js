@@ -18,15 +18,9 @@ export const onRequestGet = async () => {
 }
 
 export const onRequestPost = async (context) => {
-  // const body = await request.text();
-  // const json = await (await fetch(body)).text();
-  // return new Response(json, {
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*',
-  //     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
-  //     'Access-Control-Allow-Headers': 'Content-Type',
-  //   }
-  // });
-  return new Response("Hello, world!")
+  const body = await request.text();
+  const json = await (await fetch(body, {mode: 'cors'})).text();
+  return new Response(json);
+  // return new Response("Hello, world!")
   // return new Response(JSON.stringify(context))
 }
