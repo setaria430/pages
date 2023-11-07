@@ -108,7 +108,7 @@ fetch(apiUrl, {
     'Content-Type': 'application/json',
   },
   mode: 'cors',
-  credentials: true,
+  credentials: 'include',
 })
 .then(response => response.text())
 .then(value => {
