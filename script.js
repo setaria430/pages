@@ -100,8 +100,16 @@ function setData(notes) {
 }
 
 
-const apiUrl = "https://misskey.gamelore.fun/storage/files/6cff3461-2293-4f83-959f-f89d1e32aba5";
-fetch(apiUrl, {mode: 'cors'})
+const apiUrl = "https://jsonreader.pages.dev/helloworld";
+fetch(apiUrl, {
+  method: 'POST',
+  body: 'https://misskey.gamelore.fun/storage/files/6cff3461-2293-4f83-959f-f89d1e32aba5',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  mode: 'cors',
+  credentials: true,
+})
 .then(response => response.text())
 .then(value => {
   console.log(value);
