@@ -10,9 +10,10 @@ export const onRequestGet = async () => {
   .then(response => response.text())
   .then(value => {
     console.log(value);
+    return new Response(value);
   })
   .catch(error => console.error('通信に失敗しました', error));
-  return new Response("Hello, world!")
+  // return new Response("Hello, world!")
 }
 
 export const onRequestPost = async (context) => {
