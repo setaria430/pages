@@ -4,7 +4,7 @@ export const onRequestGet = async () => {
 
 export const onRequestPost = async (context) => {
   const body = await request.text();
-  const json = await (await fetch(body, {mode: 'cors'})).text();
+  const json = await (await fetch(body)).text();
   return new Response(json, {
     headers: {
       'Access-Control-Allow-Origin': 'https://jsonreader.pages.dev/',
