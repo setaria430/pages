@@ -1,4 +1,4 @@
-export function onRequest(context) {
+export function onRequestGet(context) {
   return new Response("Hello, world!")
 }
 
