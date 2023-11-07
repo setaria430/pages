@@ -1,8 +1,8 @@
-export function onRequestGet(context) {
+export const onRequestGet = async (context) => {
   return new Response("Hello, world!")
 }
 
-export function onRequestPost(context) {
+export const onRequestPost = async (context) => {
   const body = await request.text();
   const json = await (await fetch(body)).text();
   return new Response(json, {
