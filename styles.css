@@ -10,6 +10,9 @@
 }
 
 .local {
+  position: absolute;
+  bottom: 40px;
+  left: 2%;
   letter-spacing: 0.5px;
 	font-size: 12px;
 }
