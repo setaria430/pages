@@ -1,69 +1,30 @@
-﻿// ドラッグ&ドロップエリアの取得
-let fileArea = document.getElementById('dropArea');
-
-// input[type=file]の取得
-let fileInput = document.getElementById('uploadFile');
+﻿let url = document.getElementById('url');
+let submit = document.getElementById('submit');
 
 // jsonデータ
 let jsonList = [];
 
-// ドラッグオーバー時の処理
-fileArea.addEventListener('dragover', function(e){
-    e.preventDefault();
-    fileArea.classList.add('dragover');
-});
-
-// ドラッグアウト時の処理
-fileArea.addEventListener('dragleave', function(e){
-    e.preventDefault();
-    fileArea.classList.remove('dragover');
-});
-
-// ドロップ時の処理
-fileArea.addEventListener('drop', function(e){
-  e.preventDefault();
-  fileArea.classList.remove('dragover');
-
-  // ドロップしたファイルの取得
-  var files = e.dataTransfer.files;
-  // 取得したファイルをinput[type=file]へ
-  fileInput.files = files;
-  
-  if(typeof files[0] !== 'undefined') {
-    readFile(files[0])
-  } else {
-    //ファイルが受け取れなかった際の処理
-  }
-});
-
-// input[type=file]に変更があれば実行
-// もちろんドロップ以外でも発火します
-fileInput.addEventListener('change', function(e){
-  var file = e.target.files[0];
-  
-  if(typeof e.target.files[0] !== 'undefined') {
-    readFile(file)
-  } else {
-    // ファイルが受け取れなかった際の処理
-  }
+submit.addEventListener('click', function(e){
+  if (!url.value) return;
+  const apiUrl = "https://fetch.v-setaria.workers.dev/";
+  fetch(apiUrl, {
+    method: 'POST',
+    body: url.value,
+  })
+  .then(response => response.text())
+  .then(value => {
+    const jsonData = JSON.parse(value);
+    const notes = jsonData.map((v,i) => ({
+      no: i,
+      id: v.id,
+      text: v.text,
+      date: dayjs(v.createdAt).format('YYYY/MM/DD HH:mm')
+    }))
+    setData(notes);
+    alter();
+  })
+  .catch(error => console.error('通信に失敗しました', error));
 }, false);
-
-function readFile(file) {
-  const reader = new FileReader();
-  let json = null;
-  reader.onload = (event) => {
-    const content = event.target?.result;
-    try {
-      const jsonData = JSON.parse(content);
-      const notes = jsonData.map((v,i) => ({ no: i, id: v.id, text: v.text, date: dayjs(v.createdAt).format('YYYY/MM/DD HH:mm') }))
-      setData(notes);
-      alter();
-    } catch (error) {
-      console.error("JSONファイルを解析できませんでした。", error);
-    }
-  };
-  reader.readAsText(file);
-}
 
 function alter() {
   document.getElementById('upFileWrap').classList.add('hide');
@@ -83,7 +44,7 @@ function setData(notes) {
   let table = new Tabulator('#target', {
     data: notes,
     tooltips: true,
-    layout:"fitDataTable",
+    layout:"fitData",
     pagination: "local",
     paginationSize: 50,
     paginationSizeSelector: [ 10 , 25 , 50 , 100 ],

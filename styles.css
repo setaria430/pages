@@ -5,6 +5,15 @@
   -ms-text-size-adjust: 100%;
 }
 
+#target {
+  max-width: 1050px;
+}
+
+.local {
+  letter-spacing: 0.5px;
+	font-size: 12px;
+}
+
 div.tabulator-header-filter>input {
   background-color: white!important;
 }
@@ -13,95 +22,10 @@ div.tabulator-header-filter>input {
   display: none;
 }
 
-#inputFile {
-  position: relative;
-  padding: 180px 0 100px;
-  text-align: center;
-}
-
-#dropArea {
-  position: absolute;
-  top: 0;
-  left: 3%;
-  width: 94%;
-  height: 100%;
-  padding: 100px 0 0;
-  border: 2px dashed #494949;
-  background: rgba(22, 165, 191, 0);
-  transition: all 0.25s cubic-bezier(0.21, 0.51, 0.51, 1);
-}
-
-#dropArea.dragover {
-  border: 2px solid #16a5bf;
-  background: rgba(22, 165, 191, 0.6);
-}
-
-#uploadFile {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  display: block;
-  width: 300px;
-  height: 80px;
-  opacity: 0;
-}
-
-#inputFileWrap {
-  position: relative;
-  display: inline-block;
-}
-
-#btnInputFile,
-#btnChangeFile {
-  display: table;
-  width: 300px;
-}
-
-#btnChangeFile {
-  display: none;
-}
-
-
-#btnInputFile span,
-#btnChangeFile span {
-  position: relative;
-  z-index: 2;
-  display: table-cell;
-  width: 300px;
-  height: 80px;
-  border: 1px solid #333;
-  border-radius: 4px;
-  background: #333;
-  text-decoration: none;
-  color: #fff;
-  font-size: 26px;
-  line-height: 1;
-  font-weight: bold;
-  vertical-align: middle;
-}
-
-#upFileWrap.selected #btnInputFile {
-  display: none;
-}
-
-#upFileWrap.selected #btnChangeFile {
-  display: table;
-}
-
-
-@media screen and (max-width: 959px) {
-	/* 959px以下に適用されるCSS（タブレット用） */
-}
-@media screen and (max-width: 480px) {
-	/* 480px以下に適用されるCSS（スマホ用） */
-}
-
 /* input text */
 .cp_iptxt {
-	position: relative;
 	width: 80%;
-	margin: 40px 3%;
+	margin: 20px 0;
 }
 .cp_iptxt input[type='text'] {
 	font: 15px/24px sans-serif;
@@ -119,32 +43,33 @@ div.tabulator-header-filter>input {
 	border-bottom: 1px solid #1b2538;
 	background-color: transparent;
 }
-.ef ~ .focus_line {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 0;
-	height: 2px;
-	transition: 0.4s;
-	background-color: #da3c41;
-}
-.ef:focus ~ .focus_line,
-.cp_iptxt.ef ~ .focus_line {
-	width: 100%;
-	transition: 0.4s;
-}
-.ef ~ label {
-	position: absolute;
-	z-index: -1;
-	top: -16px;
-	left: 0;
-	width: 100%;
-	transition: 0.3s;
-	letter-spacing: 0.5px;
+.lb_iptxt {
+  letter-spacing: 0.5px;
 	font-size: 12px;
-	color: #1b2538;
 }
-.ef:focus ~ label, .cp_iptxt.ef ~ label {
-	transition: 0.3s;
-	color: #da3c41;
+
+
+/* submit button */
+.submit_button {
+  position: relative;
+  width: 150px;
+  padding: .5em 2em;
+  border: 1px solid #2589d0;
+  border-radius: 5px;
+  background-color: #2589d0;
+  color: #fff;
+  font-size: 1em;
+}
+
+.submit_button:hover {
+  animation: anima-submit_button 1s;
+}
+
+@keyframes anima-submit_button {
+  0% {
+    box-shadow: 0 0 0 0 rgb(37 137 208 / 50%);
+  }
+  100% {
+    box-shadow: 0 0 0 1.2em rgb(0 0 0 / 0%);
+  }
 }
