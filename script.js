@@ -17,6 +17,7 @@ submit.addEventListener('click', function(e){
     const notes = jsonData.map((v,i) => ({
       no: i,
       id: v.id,
+      cw: v.cw,
       text: v.text,
       date: dayjs(v.createdAt).format('YYYY/MM/DD HH:mm')
     }))
@@ -50,7 +51,8 @@ function setData(notes) {
     paginationSizeSelector: [ 10 , 25 , 50 , 100 ],
     columns:[
       {title:"No.", field:"no", headerFilter:true},
-      {title:"本文", field:"text", tooltip:true, headerFilter:true, headerSort:false, maxWidth:800},
+      {title:"注釈", field:"cw", tooltip:true, headerFilter:true, headerSort:false, maxWidth:200},
+      {title:"本文", field:"text", tooltip:true, headerFilter:true, headerSort:false, maxWidth:600},
       {title:"日付", field:"date", tooltip:true, headerFilter:true, headerSort:false, formatter:"link", formatterParams:{
         url:link,
         labelField:"date",
